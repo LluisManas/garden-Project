@@ -8,6 +8,17 @@ const userSchema = new Schema(
     firstNAme: String,
     lastName: String,
     phoneNumber: String,
+    activityGroup: {
+      type: String,
+      enum: [
+        "General",
+        "Water",
+        "Compost",
+        "Mantainece",
+        "Trees and Bushes",
+        "Cleaning"
+      ]
+    },
     role: {
       type: String,
       enum: ["Admin", "regular member", "unregistered"]
