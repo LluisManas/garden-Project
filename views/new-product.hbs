@@ -1,0 +1,23 @@
+<h2>Offer a New Product</h2>
+
+<form action="/add-product" method="POST" id="form-container">
+  <label for="productName">Product</label>
+  <input id="productName" type="text" name="productName" placeholder="What do you want to offer?">
+
+  <br><br>
+
+  <label for="description">Description</label>
+  <input id="description" type="text" name="description" placeholder="Describe the product in here">
+  <br>
+  {{#if message }}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
+
+  <br><br>
+
+  <button type="submit">Add Product</button>
+
+
+
+</form>
+<button><a href="http://localhost:3005/market">Go Back to Market</a></button>
