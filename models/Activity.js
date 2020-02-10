@@ -10,7 +10,7 @@ const activitySchema = new Schema(
         "General",
         "Water",
         "Compost",
-        "Mantainece",
+        "Maintenance",
         "Trees and Bushes",
         "Cleaning"
       ]

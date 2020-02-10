@@ -1,5 +1,5 @@
 const express = require("express");
-const passport = require('passport');
+const passport = require("passport");
 const router = express.Router();
 const User = require("../models/User");
 
@@ -7,25 +7,40 @@ const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
-
 router.get("/login", (req, res, next) => {
-  res.render("auth/login", { "message": req.flash("error") });
+  res.render("auth/login", { message: req.flash("error") });
 });
 
-router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/auth/login",
-  failureFlash: true,
-  passReqToCallback: true
-}));
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/",
+    failureRedirect: "/auth/login",
+    failureFlash: true,
+    passReqToCallback: true
+  })
+);
 
 router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
 router.post("/signup", (req, res, next) => {
+  /* const username = req.body.username;
+  const password = req.body.password; */
+  /* const newUser = {
+    username: req.body.username,
+    password: req.body.password,
+    lastName: req.body.lastName,
+    phoneNumber: req.body.phoneNumber,
+    email: req.body.email
+    // isMember
+  }; */
   const username = req.body.username;
   const password = req.body.password;
+
+  //console.log(username, password, lastName, phoneNumber, email, isMember);
+  //res.send(req.body.activityGroup);
   if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" });
     return;
@@ -38,20 +53,28 @@ router.post("/signup", (req, res, next) => {
     }
 
     const salt = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(password, salt);
+    const hashPass = bcrypt.hashSync(req.body.password, salt);
 
     const newUser = new User({
-      username,
-      password: hashPass
+      username: req.body.username,
+      password: hashPass,
+      lastName: req.body.lastName,
+      phoneNumber: req.body.phoneNumber,
+      email: req.body.email,
+      role: req.body.isMember ? "regular member" : "unregistered",
+      activityGroup: req.body.activityGroup
+      // isMember
     });
 
-    newUser.save()
-    .then(() => {
-      res.redirect("/");
-    })
-    .catch(err => {
-      res.render("auth/signup", { message: "Something went wrong" });
-    })
+    newUser
+      .save()
+      .then(() => {
+        // console.log("user saved in the database");
+        res.redirect("/");
+      })
+      .catch(err => {
+        res.render("auth/signup", { message: "Something went wrong" });
+      });
   });
 });
 

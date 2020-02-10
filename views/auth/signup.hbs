@@ -2,15 +2,53 @@
 
 <form action="/auth/signup" method="POST" id="form-container">
   <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
+  <input id="username" type="text" name="username" placeholder="JohnDoe">
+
+  <br><br>
+
+  <label for="firstName">First name</label>
+  <input id="firstName" type="text" name="firstName" placeholder="John">
+
+  <br><br>
+
+  <label for="lastName">Last name</label>
+  <input id="lastName" type="text" name="lastName" placeholder="Doe">
+
+  <br><br>
+
+  <label for="phoneNumber">Phone number</label>
+  <input id="phoneNumber" type="tel" name="phoneNumber" placeholder="Eg : 081 222 2224">
+
+  <br><br>
+  <label for="activityGroup">Choose the activity group you belong:</label>
+
+  <select id="activityGroup" name="activityGroup">
+    <option value="General"> General (default) </option>
+    <option value="Water">Water</option>
+    <option value="Compost">Compost</option>
+    <option value="Mantainece">Mantainece</option>
+    <option value="Trees and Bushes">Trees and bushes</option>
+    <option value="Cleaning">Cleaning</option>
+  </select>
+  <br><br>
+
+  <label for="email">Email</label>
+  <input id="email" type="text" name="email" placeholder="John.Doe@example.com">
 
   <br><br>
 
   <label for="password">Password</label>
   <input id="password" type="password" name="password" placeholder="Your password">
-  <br>
+  <br><br>
+
+  <input type="checkbox" name="isMember" value="true">
+  <label for="isMember"> I am already a member</label><br>
+
+
+  <br><br>
+
   {{#if message }}
-    <div class="error-message">{{ message }}</div>
+  <div class="error-message">{{ message }}</div>
   {{/if}}
 
   <br><br>
