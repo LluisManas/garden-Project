@@ -11,29 +11,29 @@ router.get("/new-event", (req, res, next) => {
   res.render("new-event");
 });
 
-router.post("/add-product", (req, res, next) => {
-  const productName = req.body.productName;
+router.post("/add-event", (req, res, next) => {
+  const eventName = req.body.eventName;
   const description = req.body.description;
-  if (productName === "" || description === "") {
-    res.render("new-product", { message: "Add necessary information" });
+  const eventDate = req.body.eventDate;
+  if (eventName === "" || description === "" || eventDate === "") {
+    res.render("new-event", { message: "Add necessary information" });
     return;
   }
-  /* const newProduct = new Product({
-    productName: req.body.productName,
+  const newEvent = new Event({
+    eventName: req.body.eventName,
     description: req.body.description,
     // author: Schema.Types.ObjectId,
-    imageUrl: req.body.imageUrl,
-    isOffer: true
+    eventDate: req.body.eventDate
   });
 
-  newProduct
+  newEvent
     .save()
     .then(() => {
-      res.redirect("/market");
+      res.redirect("/event");
     })
     .catch(err => {
-      res.render("/new-product", { message: "Add necessary information" });
-    }); */
+      res.render("/new-event", { message: "Add necessary information" });
+    });
 });
 
 module.exports = router;

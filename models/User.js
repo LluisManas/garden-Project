@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-const mongoose = require("mongoose");
+/* const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
@@ -34,8 +33,7 @@ const userSchema = new Schema(
 );
 
 const User = mongoose.model("User", userSchema);
-module.exports = User;
-=======
+module.exports = User; */
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -73,4 +71,3 @@ const userSchema = new Schema(
 
 const User = mongoose.model("User", userSchema);
 module.exports = User;
->>>>>>> e9ba8faff83b27351af98d7bc2deb33f4214d5c9

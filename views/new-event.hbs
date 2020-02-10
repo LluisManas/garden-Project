@@ -1,0 +1,27 @@
+<h2>Create a New Event</h2>
+
+<form action="/add-event" method="POST" id="form-container">
+  <label for="eventName">Event Name</label>
+  <input id="eventName" type="text" name="eventName" placeholder="What do you want to plan?">
+
+  <br><br>
+
+  <label for="description">Description</label>
+  <input id="description" type="text" name="description" placeholder="Describe the event in here">
+  <br><br>
+
+  <label for="eventDate">Date</label>
+  <input id="eventDate" type="date" name="eventDate" placeholder="When is the event?">
+  <br>
+  {{#if message }}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
+
+  <br><br>
+
+  <button type="submit">Create Event</button>
+
+
+
+</form>
+<button><a href="/event">Go Back to Event</a></button>
