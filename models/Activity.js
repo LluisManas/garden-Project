@@ -19,7 +19,11 @@ const activitySchema = new Schema(
     memebers: String,
     creationDate: Date,
     expirationDate: Date,
-    author: String
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    },
+    conmpleted: { type: Boolean, default: false }
   },
   {
     timestamps: {
