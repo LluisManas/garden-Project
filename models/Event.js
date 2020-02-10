@@ -4,7 +4,10 @@ const Schema = mongoose.Schema;
 const eventSchema = new Schema(
   {
     eventName: String,
-    author: String,
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "User"
+    },
     description: String,
     eventDate: Date
   },
