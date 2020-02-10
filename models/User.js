@@ -3,18 +3,19 @@ const Schema = mongoose.Schema;
 
 const userSchema = new Schema(
   {
+    email: String,
     username: String,
     password: String,
     firstNAme: String,
     lastName: String,
-    phoneNumber: String,
+    phoneNumber: Number,
     activityGroup: {
       type: String,
       enum: [
         "General",
         "Water",
         "Compost",
-        "Mantainece",
+        "Maintenance",
         "Trees and Bushes",
         "Cleaning"
       ]
