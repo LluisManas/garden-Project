@@ -83,10 +83,8 @@ app.use("/", index);
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
 
-<<<<<<< HEAD
 app.use("/", require("./routes/market"));
-=======
+
 //app.use("/", require("./routes/activities"));
->>>>>>> e9ba8faff83b27351af98d7bc2deb33f4214d5c9
 
 module.exports = app;
