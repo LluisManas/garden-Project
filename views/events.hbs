@@ -1,21 +1,22 @@
 <h1>Upcoming Events</h1>
 
 
-{{#each events}}
+
 <table>
   <tr>
     <th>Event</th>
     <th>Date</th>
     <th>Creator</th>
   </tr>
+  {{#each events}}
   <tr>
     <td>{{eventName}}</td>
     <td>{{eventDate}}</td>
     <td>{{author.username}}</td>
   </tr>
-
+  {{/each}}
 </table>
-{{/each}}
+
 
 
 <button><a href="/new-event">Create a New Event</a></button>

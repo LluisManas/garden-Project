@@ -1,49 +1,51 @@
 <h1>Our Market Place</h1>
 
 <h2>Request</h2>
-{{#if products}}
-{{#each products}}
-{{#unless isOffer}}
+
 <table>
   <tr>
     <th>Product </th>
     <th>Description</th>
     <th>Author</th>
   </tr>
+  {{#if products}}
+  {{#each products}}
+  {{#unless isOffer}}
   <tr>
     <td>{{productName}}</td>
     <td>{{description}}</td>
     <td>{{author.username}}</td>
   </tr>
-
+  {{/unless}}
+  {{/each}}
+  {{/if}}
 </table>
 
 
-{{/unless}}
-{{/each}}
-{{/if}}
+
 <button><a href="/new-request">Request New Product</a></button>
 
 <h2>Offer</h2>
-{{#if products}}
-{{#each products}}
-{{#if isOffer}}
+
 <table>
   <tr>
     <th>Product </th>
     <th>Description</th>
     <th>Author</th>
   </tr>
+  {{#if products}}
+  {{#each products}}
+  {{#if isOffer}}
   <tr>
     <td>{{productName}}</td>
     <td>{{description}}</td>
     <td>{{author.username}}</td>
   </tr>
-
+  {{/if}}
+  {{/each}}
+  {{/if}}
 </table>
-{{/if}}
-{{/each}}
-{{/if}}
+
 
 
 <button><a href="/new-product">Offer New Product</a></button>
