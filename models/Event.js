@@ -9,7 +9,7 @@ const eventSchema = new Schema(
       ref: "User"
     },
     description: String,
-    eventDate: Date
+    eventDate: String
   },
   {
     timestamps: {
