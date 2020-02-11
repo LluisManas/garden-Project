@@ -89,4 +89,6 @@ app.use("/", require("./routes/events"));
 
 //app.use("/", require("./routes/activities"));
 
+app.use("/", require("./routes/mainpage"));
+
 module.exports = app;
