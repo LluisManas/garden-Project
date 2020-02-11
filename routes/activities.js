@@ -4,10 +4,14 @@ const Activity = require("../models/Activity");
 const User = require("../models/User");
 
 router.get("/activities/:activity", (req, res, next) => {
-  //console.log(req.params);
-  Activity.find({})
+  Activity.find({
+    group:
+      req.params.activity.charAt(0).toUpperCase() + req.params.activity.slice(1)
+  })
     .populate("author")
     .then(data => {
+      //if user has created this button
+
       res.render("activities", {
         type: req.params.activity,
         data: data
@@ -17,6 +21,7 @@ router.get("/activities/:activity", (req, res, next) => {
       console.error(err);
     });
 });
+
 router.get("/activities/:activity/new", (req, res, next) => {
   res.render("new-activity", { activityType: req.params.activity });
 });
@@ -27,6 +32,11 @@ router.post("/activities/:activity/new", (req, res, next) => {
     res.render("new-activity", { message: "Add the necessary information" });
     return;
   }
+
+  router.get("/activities/:activity/delete/:id", (req, res, next) => {
+    console.log(req.params);
+    //res.render("new-activity", { activityType: req.params.activity });
+  });
 
   const newActivity = new Activity({
     activityName: req.body.activityName,
