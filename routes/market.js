@@ -4,9 +4,11 @@ const Product = require("../models/Product");
 const User = require("../models/User");
 
 router.get("/market", (req, res, next) => {
-  Product.find({}).then(products => {
-    res.render("market", { products });
-  });
+  Product.find({})
+    .populate("author")
+    .then(products => {
+      res.render("market", { products });
+    });
 });
 
 router.get("/new-product", (req, res, next) => {
