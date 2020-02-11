@@ -22,6 +22,7 @@ router.post("/add-event", (req, res, next) => {
     res.render("new-event", { message: "Add necessary information" });
     return;
   }
+
   const newEvent = new Event({
     eventName: req.body.eventName,
     description: req.body.description,

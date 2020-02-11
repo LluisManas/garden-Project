@@ -1,4 +1,5 @@
 <h2>Activities and duties for {{type}} :</h2>
-{{#each data }}<div>{{this.activityName}} <br>{{this.description}} <br> Posted by:{{this.author}} {{/each}}</div>
-<button><a href="/activities/{{type}}/new">Assign a new activity</a></button><br><br>
+{{#each data }}<div>{{this.activityName}} <br>{{this.description}} <br> Posted by:{{this.author.username}} {{/each}}
+</div>
+<button><a href="/activities/{{type}}/new">Assign a new activity</a></button>
 <button><a href="/mainpage">Go to Profile</a></button>

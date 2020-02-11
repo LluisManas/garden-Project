@@ -6,6 +6,7 @@ const User = require("../models/User");
 router.get("/activities/:activity", (req, res, next) => {
   //console.log(req.params);
   Activity.find({})
+    .populate("author")
     .then(data => {
       res.render("activities", {
         type: req.params.activity,
