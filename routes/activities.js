@@ -13,25 +13,31 @@ router.get("/activities/:activity/new", (req, res, next) => {
 
 router.post("/activities/:activity/new", (req, res, next) => {
   //res.send(req.body);
-  const newActivity = new Activity({
-    activityName: req.body.activityName,
-    group: req.params.activity,
-    description: req.body.description,
-    author: req.user._id,
-    conmpleted: false
-  });
   if (req.body.activityName === "" || req.body.description === "") {
     res.render("new-event", { message: "Add the necessary information" });
     return;
   }
 
+  const newActivity = new Activity({
+    activityName: req.body.activityName,
+    group:
+      req.params.activity.charAt(0).toUpperCase() +
+      req.params.activity.slice(1),
+    description: req.body.description,
+    author: req.user._id,
+    conmpleted: false
+  });
+
   newActivity
     .save()
     .then(() => {
-      res.redirect(`/activities/${req.params.activity}`);
+      res.redirect(`/activities${req.params.activity}`);
     })
     .catch(err => {
-      res.render("/new-event", { message: "Add necessary information" });
+      console.error(err);
+      res.render("new-activity", {
+        message: err
+      });
     });
 });
 
