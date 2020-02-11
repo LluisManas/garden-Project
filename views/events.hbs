@@ -1,4 +1,12 @@
-<h2>Upcoming Events</h2>
+<h1>Upcoming Events</h1>
+
+{{#if events}}
+{{#each events}}
+<h3>{{eventName}}</h3>
+<h4>{{eventDate}}</h4>
+
+{{/each}}
+{{/if}}
 
 <button><a href="/new-event">Create a New Event</a></button>
 
