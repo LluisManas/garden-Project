@@ -21,7 +21,7 @@ router.post("/add-product", (req, res, next) => {
   const newProduct = new Product({
     productName: req.body.productName,
     description: req.body.description,
-    // author: Schema.Types.ObjectId,
+    author: req.user._id,
     imageUrl: req.body.imageUrl,
     isOffer: true
   });
@@ -53,7 +53,7 @@ router.post("/add-request", (req, res, next) => {
   const newProduct = new Product({
     productName: req.body.productName,
     description: req.body.description,
-    //author: Schema.Types.ObjectId,
+    author: req.user._Id,
     imageUrl: req.body.imageUrl,
     isOffer: false
   });

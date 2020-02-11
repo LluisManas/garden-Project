@@ -22,7 +22,7 @@ router.post("/add-event", (req, res, next) => {
   const newEvent = new Event({
     eventName: req.body.eventName,
     description: req.body.description,
-    // author: Schema.Types.ObjectId,
+    author: req.user._id,
     eventDate: req.body.eventDate
   });
 
