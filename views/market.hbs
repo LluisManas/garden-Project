@@ -1,8 +1,31 @@
-<h2>Our Market Place</h2>
+<h1>Our Market Place</h1>
+
+<h2>Request</h2>
+{{#if products}}
+{{#each products}}
+{{#unless isOffer}}
+
+<h3>{{productName}}</h3>
+<p>{{description}}</p>
+{{/unless}}
+{{/each}}
+{{/if}}
+<button><a href="/new-request">Request New Product</a></button>
+
+<h2>Offer</h2>
+{{#if products}}
+{{#each products}}
+{{#if isOffer}}
+<h3>{{productName}}</h3>
+<p>{{description}}</p>
+{{/if}}
+{{/each}}
+{{/if}}
+
 
 <button><a href="/new-product">Offer New Product</a></button>
 
 
-<button><a href="/new-request">Request Product</a></button>
+
 
 <button><a href="/mainpage">Go to Profile</a></button>

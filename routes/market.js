@@ -4,7 +4,9 @@ const Product = require("../models/Product");
 const User = require("../models/User");
 
 router.get("/market", (req, res, next) => {
-  res.render("market");
+  Product.find({}).then(products => {
+    res.render("market", { products });
+  });
 });
 
 router.get("/new-product", (req, res, next) => {
