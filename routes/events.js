@@ -4,9 +4,11 @@ const Event = require("../models/Event");
 const User = require("../models/User");
 
 router.get("/event", (req, res, next) => {
-  Event.find({}).then(events => {
-    res.render("events", { events });
-  });
+  Event.find({})
+    .populate("author")
+    .then(events => {
+      res.render("events", { events });
+    });
   // res.render("events");
 });
 
