@@ -5,7 +5,16 @@ const User = require("../models/User");
 
 router.get("/activities/:activity", (req, res, next) => {
   //console.log(req.params);
-  res.render("activities", { activityType: req.params.activity });
+  Activity.find({})
+    .then(data => {
+      res.render("activities", {
+        type: req.params.activity,
+        data: data
+      });
+    })
+    .catch(err => {
+      console.error(err);
+    });
 });
 router.get("/activities/:activity/new", (req, res, next) => {
   res.render("new-activity", { activityType: req.params.activity });
@@ -14,7 +23,7 @@ router.get("/activities/:activity/new", (req, res, next) => {
 router.post("/activities/:activity/new", (req, res, next) => {
   //res.send(req.body);
   if (req.body.activityName === "" || req.body.description === "") {
-    res.render("new-event", { message: "Add the necessary information" });
+    res.render("new-activity", { message: "Add the necessary information" });
     return;
   }
 
@@ -31,7 +40,7 @@ router.post("/activities/:activity/new", (req, res, next) => {
   newActivity
     .save()
     .then(() => {
-      res.redirect(`/activities${req.params.activity}`);
+      res.redirect(`/activities/${req.params.activity}`);
     })
     .catch(err => {
       console.error(err);
