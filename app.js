@@ -87,6 +87,6 @@ app.use("/", require("./routes/market"));
 
 app.use("/", require("./routes/events"));
 
-//app.use("/", require("./routes/activities"));
+app.use("/", require("./routes/activities"));
 
 module.exports = app;
