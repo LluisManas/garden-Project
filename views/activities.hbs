@@ -1,7 +1,26 @@
 <h2>Activities and duties for {{type}} :</h2>
-{{#each data}}{{if hasCreated}}<button>Delete Activity</button>{{/if}}}<div>{{this.activityName}}
-  <br>{{this.description}} <br> Posted by:{{this.author.username}}
-  {{/each}}
+{{#each data}}<div>
+  <table>
+    <tr>
+      <th>Activity</th>
+      <th>Description</th>
+      <th>Posted by</th>
+      <th>Remove</th>
+    </tr>
+    <tr>
+      <td>{{this.activityName}}</td>
+      <td>{{this.description}}</td>
+      <td>{{this.author.username}}</td>
+      <td><a href="/activities/{{../type}}/delete/{{_id}}">Delete Activity</a>
+
+      </td>
+    </tr>
+
+  </table>
 </div>
+{{/each}}
+
+
+
 <button><a href="/activities/{{type}}/new">Assign a new activity</a></button>
 <button><a href="/mainpage">Go to Profile</a></button>
