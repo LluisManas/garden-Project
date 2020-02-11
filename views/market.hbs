@@ -4,9 +4,19 @@
 {{#if products}}
 {{#each products}}
 {{#unless isOffer}}
+<table>
+  <tr>
+    <th>Product </th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>{{productName}}</td>
+    <td>{{description}}</td>
+  </tr>
 
-<h3>{{productName}}</h3>
-<p>{{description}}</p>
+</table>
+
+
 {{/unless}}
 {{/each}}
 {{/if}}
@@ -16,8 +26,17 @@
 {{#if products}}
 {{#each products}}
 {{#if isOffer}}
-<h3>{{productName}}</h3>
-<p>{{description}}</p>
+<table>
+  <tr>
+    <th>Product </th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>{{productName}}</td>
+    <td>{{description}}</td>
+  </tr>
+
+</table>
 {{/if}}
 {{/each}}
 {{/if}}
