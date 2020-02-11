@@ -16,9 +16,7 @@ const activitySchema = new Schema(
       ]
     },
     description: String,
-    memebers: String,
-    creationDate: Date,
-    expirationDate: Date,
+    /* members: String, */
     author: {
       type: Schema.Types.ObjectId,
       ref: "User"

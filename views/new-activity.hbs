@@ -1,0 +1,28 @@
+<h2>Create a New Activity</h2>
+
+<form action="/activities/{{activityType}}/new" method="POST" id="form-container">
+  <label for="activityName">Activity Name</label>
+  <input id="activityName" type="text" name="activityName" placeholder="What do you want to plan?">
+
+  <br><br>
+
+  <label for="description">Description</label>
+  <input id="description" type="text" name="description" placeholder="Describe the activity in here">
+  <br><br>
+
+  {{!-- <label for="activityDate">Date</label>
+  <input id="activityDate" type="date" name="activityDate" placeholder="When is the activity?"> 
+  <br>
+  --}}
+  {{#if message }}
+  <div class="error-message">{{ message }}</div>
+  {{/if}}
+
+  <br><br>
+
+  <button type="submit">Create activity</button>
+
+
+
+</form>
+<button><a href="/activity">Go Back to {{activityType}} activities</a></button>
