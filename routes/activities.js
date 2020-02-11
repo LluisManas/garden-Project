@@ -4,15 +4,14 @@ const Activity = require("../models/Activity");
 const User = require("../models/User");
 
 router.get("/activities/:activity", (req, res, next) => {
-  console.log(
-    req.params.activity.charAt(0).toUpperCase() + req.params.activity.slice(1)
-  );
   Activity.find({
     group:
       req.params.activity.charAt(0).toUpperCase() + req.params.activity.slice(1)
   })
     .populate("author")
     .then(data => {
+      //if user has created this button
+
       res.render("activities", {
         type: req.params.activity,
         data: data
