@@ -23,6 +23,20 @@ router.get("/new-event", checkIfLoggedIn, (req, res, next) => {
   res.render("new-event");
 });
 
+router.get("/new-event/delete/:id", (req, res, next) => {
+  Event.findById(req.params.id).then(data => {
+    console.log(data.author, req.user._id);
+    if (data.author.toString() === req.user._id.toString()) {
+      Event.deleteOne({ _id: req.params.id })
+        .then(data => {
+          console.log(`Deleted ${data}`);
+          res.redirect("/event");
+        })
+        .catch(err => res.render("events", { message: err }));
+    }
+  });
+});
+
 router.post("/add-event", checkIfLoggedIn, (req, res, next) => {
   const eventName = req.body.eventName;
   const description = req.body.description;
