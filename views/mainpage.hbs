@@ -1,6 +1,6 @@
 <h1>Welcome {{username}}</h1>
 
-
+<div id="weather-widget"></div>
 
 <button><a href="/activities/"></a>Go to Activities</a></button>
 
@@ -13,3 +13,87 @@
 <button><a href="/activities/trees-and-bushes">Go to Trees & Bushes Activities</a></button><br>
 <button><a href="/activities/cleaning">Go to Cleaning Activities</a></button><br>
 <button><a href="/activities/general">Go to General Activities</a></button><br>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+
+<script>
+  const calcDate = (date) => {
+    let target = new Date(date);
+    switch (target.getDay()) {
+      case 0:
+        dayName = "Sunday"
+        break;
+      case 1:
+        dayName = "Monday"
+        break;
+      case 2:
+        dayName = "Tuesday"
+        break;
+      case 3:
+        dayName = "Wednesday"
+        break;
+      case 4:
+        dayName = "Thursday"
+        break;
+      case 5:
+        dayName = "Friday"
+        break;
+      case 6:
+        dayName = "Saturday"
+        break;
+    }
+    return dayName
+  }
+
+  const widget = document.getElementById("weather-widget");
+
+  let today = new Date();
+  let dd = today.getDate();
+  let mm = today.getMonth() + 1;
+  let yyyy = today.getFullYear();
+
+  if (dd < 10) {
+    dd = '0' + dd
+  }
+
+  if (mm < 10) {
+    mm = '0' + mm
+  }
+  today = dd + '/' + mm + '/' + yyyy;
+
+
+
+
+  axios.get("https://api.openweathermap.org/data/2.5/forecast?id=2950159&appid=7d74d8e8207ec314f79861d1020ef6e4&units=metric").then((data) => {
+    data.data.list.forEach((dt, index) => {
+
+      if (index === 0) {
+        let todaysData = `<div id="todaysData"> 
+          <h2> Today's weather</h2>
+          <div class="city"> ${data.data.city.name}</div>
+          <div class="currentTemp">${dt.main.temp} °C </div>
+          <div class="minMax">${Math.round(dt.main.temp_min * 10) / 10}-${Math.round(dt.main.temp_max * 10) / 10}</div>
+          <img class="icon" src="http://openweathermap.org/img/wn/${dt.weather[0].icon}@2x.png"> 
+          <div class="date">${today}</div>
+          </div>`
+        widget.innerHTML = todaysData;
+      }
+      else if (index % 8 === 0) {
+        console.log(dt.main)
+        let dayName = calcDate(dt.dt_txt.split(" ")[0])
+        let temp = Math.round(dt.main.temp * 10) / 10
+
+        let nextDaysData = `<br>
+        <br>
+        <br><div class="nextDaysData">
+          <div class ="dayName">${dayName}</div>
+          <img class="icon" src="http://openweathermap.org/img/wn/${dt.weather[0].icon}@2x.png">
+          <div class="temp">${Math.round(dt.main.temp * 10) / 10} °C</div >
+          </div >`
+        widget.innerHTML += nextDaysData
+
+
+      }
+    })
+  }).catch((err) => console.error(err));
+</script>
