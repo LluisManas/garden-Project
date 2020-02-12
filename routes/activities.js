@@ -28,7 +28,6 @@ router.get("/activities/:activity/new", (req, res, next) => {
 
 router.get("/activities/:activity/delete/:id", (req, res, next) => {
   Activity.findById(req.params.id).then(result => {
-    console.log(result.author, "this is req.user.id->", req.user._id);
     if (result.author.toString() === req.user._id.toString()) {
       Activity.deleteOne({ _id: req.params.id })
         .then(result => {
