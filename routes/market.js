@@ -27,6 +27,7 @@ router.get("/new-product/delete/:id", checkIfLoggedIn, (req, res, next) => {
     if (data.author.toString() === req.user._id.toString()) {
       Product.deleteOne({ _id: req.params.id })
         .then(data => {
+          console.log(`Deleted ${data}`);
           res.redirect("/market");
         })
         .catch(err => res.render("market", { message: err }));
@@ -34,7 +35,12 @@ router.get("/new-product/delete/:id", checkIfLoggedIn, (req, res, next) => {
   });
 });
 
+<<<<<<< HEAD
 router.post("/add-product", checkIfLoggedIn, (req, res, next) => {
+=======
+router.post("/add-product", (req, res, next) => {
+  console.log(req.user);
+>>>>>>> 7c0d4c68c72e8d5fe5ca6aeecaa97af28d68cf3e
   const productName = req.body.productName;
   const description = req.body.description;
   if (productName === "" || description === "") {
@@ -63,7 +69,27 @@ router.get("/new-request", checkIfLoggedIn, (req, res, next) => {
   res.render("new-request");
 });
 
+<<<<<<< HEAD
 router.post("/add-request", checkIfLoggedIn, (req, res, next) => {
+=======
+router.get("/new-request/delete/:id", (req, res, next) => {
+  Product.findById(req.params.id).then(data => {
+    console.log(data.author, req.user._id);
+    if (data.author.toString() === req.user._id.toString()) {
+      Product.deleteOne({ _id: req.params.id })
+        .then(data => {
+          console.log(`Deleted ${data}`);
+          res.redirect("/market");
+        })
+        .catch(err => res.render("market", { message: err }));
+    }
+  });
+});
+
+router.post("/add-request", (req, res, next) => {
+  console.log("Its good");
+  console.log(req.user._id);
+>>>>>>> 7c0d4c68c72e8d5fe5ca6aeecaa97af28d68cf3e
   const productName = req.body.productName;
   const description = req.body.description;
   if (productName === "" || description === "") {
@@ -74,7 +100,7 @@ router.post("/add-request", checkIfLoggedIn, (req, res, next) => {
   const newProduct = new Product({
     productName: req.body.productName,
     description: req.body.description,
-    author: req.user._Id,
+    author: req.user._id,
     imageUrl: req.body.imageUrl,
     isOffer: false
   });

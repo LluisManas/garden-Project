@@ -1,31 +1,5 @@
 <h1>Our Market Place</h1>
 
-<h2>Request</h2>
-
-<table>
-  <tr>
-    <th>Product </th>
-    <th>Description</th>
-    <th>Author</th>
-  </tr>
-  {{#if products}}
-  {{#each products}}
-  {{#unless isOffer}}
-  <tr>
-    <td>{{productName}}</td>
-    <td>{{description}}</td>
-    <td>{{author.username}}</td>
-    <td><a href="/new-product/delete/{{_id}}">Delete Product</a></td>
-  </tr>
-  {{/unless}}
-  {{/each}}
-  {{/if}}
-</table>
-
-
-
-<button><a href="/new-request">Request New Product</a></button>
-
 <h2>Offer</h2>
 
 <table>
@@ -41,6 +15,7 @@
     <td>{{productName}}</td>
     <td>{{description}}</td>
     <td>{{author.username}}</td>
+    <td><a href="/new-product/delete/{{_id}}">Delete Product</a></td>
   </tr>
   {{/if}}
   {{/each}}
@@ -49,7 +24,35 @@
 
 
 
-<button><a href="/new-product">Offer New Product</a></button>
+<button><a href="/new-product">New Offer</a></button>
+
+<h2>Request</h2>
+
+<table>
+  <tr>
+    <th>Product </th>
+    <th>Description</th>
+    <th>Author</th>
+  </tr>
+  {{#if products}}
+  {{#each products}}
+  {{#unless isOffer}}
+  <tr>
+    <td>{{productName}}</td>
+    <td>{{description}}</td>
+    <td>{{author.username}}</td>
+    <td>
+    <td><a href="/new-request/delete/{{_id}}">Delete Request</a></td>
+    </td>
+  </tr>
+  {{/unless}}
+  {{/each}}
+  {{/if}}
+</table>
+
+
+
+<button><a href="/new-request">New Request</a></button>
 
 
 
