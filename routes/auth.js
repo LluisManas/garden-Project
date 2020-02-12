@@ -8,7 +8,6 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 router.get("/login", (req, res, next) => {
-  console.log("YOOOOOOoooooOOOO");
   res.render("auth/login", { message: req.flash("error") });
 });
 
@@ -27,16 +26,6 @@ router.get("/signup", (req, res, next) => {
 });
 
 router.post("/signup", (req, res, next) => {
-  /* const username = req.body.username;
-  const password = req.body.password; */
-  /* const newUser = {
-    username: req.body.username,
-    password: req.body.password,
-    lastName: req.body.lastName,
-    phoneNumber: req.body.phoneNumber,
-    email: req.body.email
-    // isMember
-  }; */
   const username = req.body.username;
   const password = req.body.password;
 

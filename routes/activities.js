@@ -3,7 +3,15 @@ const router = express.Router();
 const Activity = require("../models/Activity");
 const User = require("../models/User");
 
-router.get("/activities/:activity", (req, res, next) => {
+const checkIfLoggedIn = (req, res, next) => {
+  if (req.user) {
+    next();
+  } else {
+    res.redirect("/login");
+  }
+};
+
+router.get("/activities/:activity", checkIfLoggedIn, (req, res, next) => {
   Activity.find({
     group:
       req.params.activity.charAt(0).toUpperCase() + req.params.activity.slice(1)
@@ -22,24 +30,28 @@ router.get("/activities/:activity", (req, res, next) => {
     });
 });
 
-router.get("/activities/:activity/new", (req, res, next) => {
+router.get("/activities/:activity/new", checkIfLoggedIn, (req, res, next) => {
   res.render("new-activity", { activityType: req.params.activity });
 });
 
-router.get("/activities/:activity/delete/:id", (req, res, next) => {
-  Activity.findById(req.params.id).then(result => {
-    if (result.author.toString() === req.user._id.toString()) {
-      Activity.deleteOne({ _id: req.params.id })
-        .then(result => {
-          console.log(`Deleted ${result}`);
-          res.redirect(`/activities/${req.params.activity}`);
-        })
-        .catch(err => res.render("activities", { message: err }));
-    }
-  });
-});
+router.get(
+  "/activities/:activity/delete/:id",
+  checkIfLoggedIn,
+  (req, res, next) => {
+    Activity.findById(req.params.id).then(result => {
+      if (result.author.toString() === req.user._id.toString()) {
+        Activity.deleteOne({ _id: req.params.id })
+          .then(result => {
+            console.log(`Deleted ${result}`);
+            res.redirect(`/activities/${req.params.activity}`);
+          })
+          .catch(err => res.render("activities", { message: err }));
+      }
+    });
+  }
+);
 
-router.post("/activities/:activity/new", (req, res, next) => {
+router.post("/activities/:activity/new", checkIfLoggedIn, (req, res, next) => {
   //res.send(req.body);
   if (req.body.activityName === "" || req.body.description === "") {
     res.render("new-activity", { message: "Add the necessary information" });

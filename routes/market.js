@@ -7,7 +7,7 @@ const checkIfLoggedIn = (req, res, next) => {
   if (req.user) {
     next();
   } else {
-    res.redirect("/");
+    res.redirect("/login");
   }
 };
 router.get("/market", checkIfLoggedIn, (req, res, next) => {
@@ -18,11 +18,11 @@ router.get("/market", checkIfLoggedIn, (req, res, next) => {
     });
 });
 
-router.get("/new-product", (req, res, next) => {
+router.get("/new-product", checkIfLoggedIn, (req, res, next) => {
   res.render("new-product");
 });
 
-router.get("/new-product/delete/:id", (req, res, next) => {
+router.get("/new-product/delete/:id", checkIfLoggedIn, (req, res, next) => {
   Product.findById(req.params.id).then(data => {
     if (data.author.toString() === req.user._id.toString()) {
       Product.deleteOne({ _id: req.params.id })
@@ -34,7 +34,7 @@ router.get("/new-product/delete/:id", (req, res, next) => {
   });
 });
 
-router.post("/add-product", (req, res, next) => {
+router.post("/add-product", checkIfLoggedIn, (req, res, next) => {
   const productName = req.body.productName;
   const description = req.body.description;
   if (productName === "" || description === "") {
@@ -55,24 +55,22 @@ router.post("/add-product", (req, res, next) => {
       res.redirect("/market");
     })
     .catch(err => {
-      res.render("/new-product", { message: "Add necessary information" });
+      res.render("new-product", { message: "Add necessary information" });
     });
 });
 
-router.get("/new-request", (resq, res, next) => {
+router.get("/new-request", checkIfLoggedIn, (req, res, next) => {
   res.render("new-request");
 });
 
-router.post("/add-request", (req, res, next) => {
-  console.log("Its good");
+router.post("/add-request", checkIfLoggedIn, (req, res, next) => {
   const productName = req.body.productName;
   const description = req.body.description;
   if (productName === "" || description === "") {
-    res.render("/new-request", { message: "Add necessary information" });
+    res.render("new-request", { message: "Add necessary information" });
     return;
   }
-  console.log(productName, description);
-  console.log(req.body);
+
   const newProduct = new Product({
     productName: req.body.productName,
     description: req.body.description,
@@ -87,7 +85,7 @@ router.post("/add-request", (req, res, next) => {
       res.redirect("/market");
     })
     .catch(err => {
-      res.render("/new-request", { message: "Add necessary information" });
+      res.render("new-request", { message: "Add necessary information" });
     });
 });
 
