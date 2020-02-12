@@ -15,6 +15,18 @@ router.get("/new-product", (req, res, next) => {
   res.render("new-product");
 });
 
+router.get("/new-product/delete/:id", (req, res, next) => {
+  Product.findById(req.params.id).then(data => {
+    if (data.author.toString() === req.user._id.toString()) {
+      Product.deleteOne({ _id: req.params.id })
+        .then(data => {
+          res.redirect("/market");
+        })
+        .catch(err => res.render("market", { message: err }));
+    }
+  });
+});
+
 router.post("/add-product", (req, res, next) => {
   const productName = req.body.productName;
   const description = req.body.description;
