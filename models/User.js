@@ -45,6 +45,7 @@ const userSchema = new Schema(
     firstNAme: String,
     lastName: String,
     phoneNumber: Number,
+    facebookID: String,
     activityGroup: {
       type: String,
       enum: [
