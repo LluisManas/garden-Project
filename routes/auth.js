@@ -8,6 +8,7 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 router.get("/login", (req, res, next) => {
+  console.log("YOOOOOOoooooOOOO");
   res.render("auth/login", { message: req.flash("error") });
 });
 

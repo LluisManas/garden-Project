@@ -3,7 +3,14 @@ const router = express.Router();
 const Product = require("../models/Product");
 const User = require("../models/User");
 
-router.get("/market", (req, res, next) => {
+const checkIfLoggedIn = (req, res, next) => {
+  if (req.user) {
+    next();
+  } else {
+    res.redirect("/");
+  }
+};
+router.get("/market", checkIfLoggedIn, (req, res, next) => {
   Product.find({})
     .populate("author")
     .then(products => {
