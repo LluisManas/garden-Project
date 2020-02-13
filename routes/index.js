@@ -9,11 +9,11 @@ router.get("/", (req, res, next) => {
 router.get("/axioscall", (req, res, next) => {
   axios
     .get(
-      "https://api.openweathermap.org/data/2.5/forecast?id=2950159&appid=7d74d8e8207ec314f79861d1020ef6e4&units=metric"
+      `https://api.openweathermap.org/data/2.5/forecast?id=2950159&appid=${process.env.APIkey}&units=metric`
     )
-    .then(data => {
-      console.log(data);
-      res.send(data);
+    .then(response => {
+      //var myJSON = JSON.stringify(data);
+      res.json(response.data);
     })
     .catch(err => console.error(err));
 });
