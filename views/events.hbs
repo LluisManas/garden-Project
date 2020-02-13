@@ -1,25 +1,28 @@
-<h1>Upcoming Events</h1>
+<div class="page-container">
+  <h2>Upcoming Events</h2>
 
 
 
-<table>
-  <tr>
-    <th>Event</th>
-    <th>Date</th>
-    <th>Creator</th>
-  </tr>
-  {{#each events}}
-  <tr>
-    <td>{{eventName}}</td>
-    <td>{{eventDate}}</td>
-    <td>{{author.username}}</td>
-    <td><a href="/new-event/delete/{{_id}}">Delete Event</a></td>
-  </tr>
-  {{/each}}
-</table>
+  <table>
+    <tr>
+      <th>Event</th>
+      <th>Date</th>
+      <th>Creator</th>
+      <th>Delete</th>
+    </tr>
+    {{#each events}}
+    <tr>
+      <td>{{eventName}}</td>
+      <td>{{eventDate}}</td>
+      <td>{{author.username}}</td>
+      <td><a href="/new-event/delete/{{_id}}">Delete Event</a></td>
+    </tr>
+    {{/each}}
+  </table>
 
 
 
-<button><a href="/new-event">Create a New Event</a></button>
+  <button class="mainButton actButton"><a href="/new-event">Create a New Event</a></button>
 
-<button><a href="/mainpage">Go to Profile</a></button>
+
+</div>

@@ -22,7 +22,8 @@ router.get("/activities/:activity", checkIfLoggedIn, (req, res, next) => {
 
       res.render("activities", {
         type: req.params.activity,
-        data: data
+        data: data,
+        user: req.user
       });
     })
     .catch(err => {
@@ -31,7 +32,10 @@ router.get("/activities/:activity", checkIfLoggedIn, (req, res, next) => {
 });
 
 router.get("/activities/:activity/new", checkIfLoggedIn, (req, res, next) => {
-  res.render("new-activity", { activityType: req.params.activity });
+  res.render("new-activity", {
+    activityType: req.params.activity,
+    user: req.user
+  });
 });
 
 router.get(
@@ -54,7 +58,9 @@ router.get(
 router.post("/activities/:activity/new", checkIfLoggedIn, (req, res, next) => {
   //res.send(req.body);
   if (req.body.activityName === "" || req.body.description === "") {
-    res.render("new-activity", { message: "Add the necessary information" });
+    res.render("new-activity", {
+      message: "Add the necessary information"
+    });
     return;
   }
 

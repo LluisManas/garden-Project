@@ -1,27 +1,29 @@
-<h2>Activities and duties for {{type}} :</h2>
+<div id="" class="page-container">
+  <h2>Activities and duties for {{type}} :</h2>
 
-<table>
-  <tr>
-    <th>Activity</th>
-    <th>Description</th>
-    <th>Posted by</th>
-    <th>Remove</th>
-  </tr>
-  {{#each data}}
-  <tr>
-    <td>{{this.activityName}}</td>
-    <td>{{this.description}}</td>
-    <td>{{this.author.username}}</td>
-    <td><a href="/activities/{{../type}}/delete/{{_id}}">Delete Activity</a>
-
-    </td>
-  </tr>
-  {{/each}}
-</table>
-
-
+  <table>
+    <tr>
+      <th>Activity</th>
+      <th>Description</th>
+      <th>Posted by</th>
+      <th>Remove</th>
+    </tr>
+    {{#each data}}
+    <tr>
+      <td>{{this.activityName}}</td>
+      <td>{{this.description}}</td>
+      <td>{{this.author.username}}</td>
+      <td><a href="/activities/{{../type}}/delete/{{_id}}">Delete Activity</a>
+      </td>
+    </tr>
+    {{/each}}
+  </table>
 
 
 
-<button><a href="/activities/{{type}}/new">Assign a new activity</a></button>
-<button><a href="/mainpage">Go to Profile</a></button>
+
+
+  <button class="mainButton actButton"><a href="/activities/{{type}}/new">Assign a new activity</a></button>
+
+
+</div>

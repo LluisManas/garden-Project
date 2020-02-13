@@ -1,24 +1,27 @@
-<h2>Request a Product</h2>
+<div class="page-container">
+  <h2>Request a Product</h2>
 
-<form action="/add-request" method="POST" id="form-container">
-  <label for="productName">Product</label>
-  <input id="productName" type="text" name="productName" placeholder="What do you need?">
+  <form action="/add-request" method="POST" id="form-container">
+    <label class="white" for="productName">Product</label>
+    <input id="productName" type="text" name="productName" placeholder="What do you need?">
 
-  <br><br>
+    <br><br>
 
-  <label for="description">Description</label>
-  <input id="description" type="text" name="description" placeholder="Describe what you need">
-  <br>
-  {{#if message }}
-  <div class="error-message">{{ message }}</div>
-  {{/if}}
+    <label class="white" for="description">Description</label>
+    <input id="description" type="text" name="description" placeholder="Describe what you need">
+    <br>
+    {{#if message }}
+    <div class="error-message">{{ message }}</div>
+    {{/if}}
 
-  <br><br>
-  <button type="submit">Make Request</button>
-
-
-
-</form>
+    <br><br>
+    <button class="mainButton actButton" type="submit">Make Request</button>
 
 
-<button><a href="/market">Go Back to Market</a></button>
+
+  </form>
+
+
+  <button class="mainButton actButton"><a href="/market">Go Back to Market</a></button>
+
+</div>

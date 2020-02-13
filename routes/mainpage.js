@@ -6,7 +6,7 @@ const checkIfLoggedIn = (req, res, next) => {
   if (req.user) {
     next();
   } else {
-    res.redirect("/login");
+    res.redirect("/auth/login");
   }
 };
 
@@ -14,7 +14,8 @@ router.get("/mainpage", checkIfLoggedIn, (req, res, next) => {
   //res.send(process.env.APIkey);
   res.render("mainpage", {
     username: req.user.username,
-    apiKey: process.env.APIkey
+    apiKey: process.env.APIkey,
+    user: req.user
   });
 });
 
