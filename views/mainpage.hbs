@@ -1,18 +1,27 @@
-<h1>Welcome {{username}}</h1>
+<div class="mainpage-container">
+  <h1>Welcome {{username}}</h1>
 
-<div id="weather-widget"></div>
+  <div id="weather-widget"></div>
+  <div class="main-buttons">
 
-<button><a href="/activities/"></a>Go to Activities</a></button>
+    <div class="dropdown">
+      <button class="mainButton">Activities</button>
 
-<button><a href="/market">Go to Market</a></button>
+      <div class="dropdown-content">
+        <a href="/activities/water">Go to Water Activities</a><br>
+        <a href="/activities/compost">Go to Compost Activities</a><br>
+        <a href="/activities/maintenance">Go to Mantainance Activities</a><br>
+        <a href="/activities/trees-and-bushes">Go to Trees & Bushes Activities</a><br>
+        <a href="/activities/cleaning">Go to Cleaning Activities</a><br>
+        <a href="/activities/general">Go to General Activities</a><br>
+      </div>
+    </div>
 
-<button><a href="/event">Go to Events</a></button><br>
-<button><a href="/activities/water">Go to Water Activities</a></button><br>
-<button><a href="/activities/compost">Go to Compost Activities</a></button><br>
-<button><a href="/activities/maintenance">Go to Mantainance Activities</a></button><br>
-<button><a href="/activities/trees-and-bushes">Go to Trees & Bushes Activities</a></button><br>
-<button><a href="/activities/cleaning">Go to Cleaning Activities</a></button><br>
-<button><a href="/activities/general">Go to General Activities</a></button><br>
+    <button class="mainButton"><a href="/market">Go to Market</a></button>
+
+    <button class="mainButton"><a href="/event">Go to Events</a></button><br>
+  </div>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 
@@ -46,37 +55,21 @@
   }
 
   const widget = document.getElementById("weather-widget");
+  const nextDaysWeather = document.createElement("div");
+  const firstDayWidget = document.createElement("div");
 
-  let today = new Date();
-  let dd = today.getDate();
-  let mm = today.getMonth() + 1;
-  let yyyy = today.getFullYear();
-
-  if (dd < 10) {
-    dd = '0' + dd
-  }
-
-  if (mm < 10) {
-    mm = '0' + mm
-  }
-  today = dd + '/' + mm + '/' + yyyy;
-
-
-
-
-  axios.get("https://api.openweathermap.org/data/2.5/forecast?id=2950159&appid=7d74d8e8207ec314f79861d1020ef6e4&units=metric").then((data) => {
+  axios.get("/axioscall").then((data) => {
+    console.log(data)
     data.data.list.forEach((dt, index) => {
 
       if (index === 0) {
-        let todaysData = `<div id="todaysData"> 
-          <h2> Today's weather</h2>
-          <div class="city"> ${data.data.city.name}</div>
-          <div class="currentTemp">${dt.main.temp} °C </div>
-          <div class="minMax">${Math.round(dt.main.temp_min * 10) / 10}-${Math.round(dt.main.temp_max * 10) / 10}</div>
+        let todaysData = `<div class="daysData"> 
+          <div class="city"> Today</div>
           <img class="icon" src="http://openweathermap.org/img/wn/${dt.weather[0].icon}@2x.png"> 
-          <div class="date">${today}</div>
+          <div class="currentTemp">${dt.main.temp} °C </div>
           </div>`
-        widget.innerHTML = todaysData;
+        firstDayWidget.innerHTML = todaysData;
+        widget.innerHTML = firstDayWidget.innerHTML
       }
       else if (index % 8 === 0) {
         console.log(dt.main)
@@ -85,15 +78,15 @@
 
         let nextDaysData = `<br>
         <br>
-        <br><div class="nextDaysData">
+        <br><div class="daysData">
           <div class ="dayName">${dayName}</div>
           <img class="icon" src="http://openweathermap.org/img/wn/${dt.weather[0].icon}@2x.png">
           <div class="temp">${Math.round(dt.main.temp * 10) / 10} °C</div >
           </div >`
-        widget.innerHTML += nextDaysData
-
+        nextDaysWeather.innerHTML += nextDaysData
 
       }
     })
+    widget.innerHTML += nextDaysWeather.innerHTML
   }).catch((err) => console.error(err));
 </script>

@@ -7,18 +7,25 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
   <link rel="stylesheet" href="/stylesheets/style.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+  </style>
 </head>
 
 <body>
 
-  <nav>
-    {{#unless user}}<a href="/mainpage">Home</a>{{/unless}}
-    {{#unless user}}<a href="/auth/login">Login</a>{{/unless}}
-    {{#unless user}}<a href="/auth/signup">Signup</a>{{/unless}}
-    {{#if user}}<a href="/auth/logout">Logout</a>{{/if}}
+  <nav class="navbar">
+    {{#if user}}<a class="navbar-items" href="/mainpage">Home</a>{{/if}}
+    {{#unless user}}<a class="navbar-items" href="/auth/login">Login</a>{{/unless}}
+    {{#unless user}}<a class="navbar-items" href="/auth/signup">Signup</a>{{/unless}}
+    {{#if user}}<a class="navbar-items" href="/auth/logout">Logout</a>{{/if}}
   </nav>
 
   {{{body}}}
+
+  <footer>
+    Powered by Lluis Mañas & Alexis Perdikakis for Ironhack
+  </footer>
 
   <script src="/javascripts/script.js"></script>
 </body>

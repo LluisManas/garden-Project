@@ -14,12 +14,12 @@ router.get("/market", checkIfLoggedIn, (req, res, next) => {
   Product.find({})
     .populate("author")
     .then(products => {
-      res.render("market", { products });
+      res.render("market", { products, user: req.user });
     });
 });
 
 router.get("/new-product", checkIfLoggedIn, (req, res, next) => {
-  res.render("new-product");
+  res.render("new-product", { user: req.user });
 });
 
 router.get("/new-product/delete/:id", checkIfLoggedIn, (req, res, next) => {
@@ -30,7 +30,7 @@ router.get("/new-product/delete/:id", checkIfLoggedIn, (req, res, next) => {
           console.log(`Deleted ${data}`);
           res.redirect("/market");
         })
-        .catch(err => res.render("market", { message: err }));
+        .catch(err => res.render("market", { message: err, user: req.user }));
     }
   });
 });
@@ -39,7 +39,10 @@ router.post("/add-product", checkIfLoggedIn, (req, res, next) => {
   const productName = req.body.productName;
   const description = req.body.description;
   if (productName === "" || description === "") {
-    res.render("new-product", { message: "Add necessary information" });
+    res.render("new-product", {
+      message: "Add necessary information",
+      user: req.user
+    });
     return;
   }
   const newProduct = new Product({
@@ -61,7 +64,7 @@ router.post("/add-product", checkIfLoggedIn, (req, res, next) => {
 });
 
 router.get("/new-request", checkIfLoggedIn, (req, res, next) => {
-  res.render("new-request");
+  res.render("new-request", { user: req.user });
 });
 
 router.get("/new-request/delete/:id", (req, res, next) => {
@@ -84,7 +87,10 @@ router.post("/add-request", checkIfLoggedIn, (req, res, next) => {
   const productName = req.body.productName;
   const description = req.body.description;
   if (productName === "" || description === "") {
-    res.render("new-request", { message: "Add necessary information" });
+    res.render("new-request", {
+      message: "Add necessary information",
+      user: req.user
+    });
     return;
   }
 
@@ -102,7 +108,10 @@ router.post("/add-request", checkIfLoggedIn, (req, res, next) => {
       res.redirect("/market");
     })
     .catch(err => {
-      res.render("new-request", { message: "Add necessary information" });
+      res.render("new-request", {
+        message: "Add necessary information",
+        user: req.user
+      });
     });
 });
 

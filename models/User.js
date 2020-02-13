@@ -44,6 +44,11 @@ const userSchema = new Schema(
     password: String,
     firstNAme: String,
     lastName: String,
+    imageUrl: {
+      type: String,
+      default:
+        "https://www.pinclipart.com/picdir/big/34-349857_seed-png-clipart-plant-biology-png-transparent-png.png"
+    },
     phoneNumber: Number,
     facebookID: String,
     activityGroup: {

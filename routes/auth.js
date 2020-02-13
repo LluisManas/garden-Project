@@ -22,7 +22,7 @@ router.post(
 );
 
 router.get("/signup", (req, res, next) => {
-  res.render("auth/signup");
+  res.render("auth/signup" /* { user: req.user } */);
 });
 
 router.post("/signup", (req, res, next) => {

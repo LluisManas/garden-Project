@@ -14,13 +14,13 @@ router.get("/event", checkIfLoggedIn, (req, res, next) => {
   Event.find({})
     .populate("author")
     .then(events => {
-      res.render("events", { events });
+      res.render("events", { events, user: req.user });
     });
   // res.render("events");
 });
 
 router.get("/new-event", checkIfLoggedIn, (req, res, next) => {
-  res.render("new-event");
+  res.render("new-event", { user: req.user });
 });
 
 router.get("/new-event/delete/:id", (req, res, next) => {
@@ -42,7 +42,10 @@ router.post("/add-event", checkIfLoggedIn, (req, res, next) => {
   const description = req.body.description;
   const eventDate = req.body.eventDate;
   if (eventName === "" || description === "" || eventDate === "") {
-    res.render("new-event", { message: "Add necessary information" });
+    res.render("new-event", {
+      message: "Add necessary information",
+      user: req.user
+    });
     return;
   }
 
@@ -59,7 +62,10 @@ router.post("/add-event", checkIfLoggedIn, (req, res, next) => {
       res.redirect("/event");
     })
     .catch(err => {
-      res.render("new-event", { message: "Add necessary information" });
+      res.render("new-event", {
+        message: "Add necessary information",
+        user: req.user
+      });
     });
 });
 
