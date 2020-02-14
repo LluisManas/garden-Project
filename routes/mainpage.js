@@ -15,7 +15,8 @@ router.get("/mainpage", checkIfLoggedIn, (req, res, next) => {
   res.render("mainpage", {
     username: req.user.username,
     apiKey: process.env.APIkey,
-    user: req.user
+    user: req.user,
+    image: req.user.imageUrl
   });
 });
 
