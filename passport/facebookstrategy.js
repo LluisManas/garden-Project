@@ -9,7 +9,7 @@ passport.use(
     {
       clientID: process.env.client_id,
       clientSecret: process.env.client_secret,
-      callbackURL: "http://ourgarden.herokuapp.com/auth/facebook/callback",
+      callbackURL: "https://ourgarden.herokuapp.com/auth/facebook/callback",
       profileFields: ["id", "displayName", "picture.type(large)"]
     },
     function(accessToken, refreshToken, profile, done) {
