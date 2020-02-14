@@ -13,7 +13,7 @@ passport.use(
       profileFields: ["id", "displayName", "picture.type(large)"]
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log(profile.picture);
+      console.log("profile picture", profile.picture, profile);
       User.findOne({ facebookID: profile.id })
         .then(user => {
           if (user) {
