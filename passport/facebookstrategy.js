@@ -13,7 +13,7 @@ passport.use(
       profileFields: ["id", "displayName", "picture.type(large)"]
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log(profile);
+      console.log(profile.picture);
       User.findOne({ facebookID: profile.id })
         .then(user => {
           if (user) {
@@ -23,7 +23,7 @@ passport.use(
 
           User.create({
             facebookID: profile.id,
-            displayName: profile.displayName
+            displayName: profile.displayNames
           })
             .then(newUser => {
               done(null, newUser);
