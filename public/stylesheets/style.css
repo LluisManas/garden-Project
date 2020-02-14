@@ -6,6 +6,11 @@ body {
 h1 {
   margin: 0; }
 
+#profile-picture {
+  width: 100px;
+  height: 100px;
+  margin: 25px; }
+
 a {
   color: #00b7ff; }
 
@@ -93,6 +98,9 @@ footer {
   justify-content: center;
   align-items: center; }
 
+#profileInfo {
+  display: flex; }
+
 #weather-widget {
   display: flex;
   justify-content: flex-end;
@@ -143,21 +151,7 @@ footer {
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1; }
 
-/* Links inside the dropdown */
-.dropdown-content a {
-  margin: 0;
-  padding: 0;
-  color: white;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  background-color: #c38d9e;
-  border-radius: 15px; }
-
 /* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #c38d9e; }
-
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
   display: block; }
@@ -191,5 +185,47 @@ h2 {
 
 .white {
   color: white; }
+
+.dropbtn {
+  background-color: #3498db;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none; }
+
+/* The container <div> - needed to position the dropup content */
+.dropup {
+  position: relative;
+  display: inline-block; }
+
+/* Dropup content (Hidden by Default) */
+.dropup-content {
+  display: none;
+  position: absolute;
+  bottom: 50px;
+  background-color: #c38d9e;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1; }
+
+/* Links inside the dropup */
+.dropup-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  color: white; }
+
+/* Change color of dropup links on hover */
+.dropup-content a:hover {
+  background-color: #ddd; }
+
+/* Show the dropup menu on hover */
+.dropup:hover .dropup-content {
+  display: block; }
+
+/* Change the background color of the dropup button when the dropup content is shown */
+.dropup:hover .dropbtn {
+  background-color: #2980b9; }
 
 /*# sourceMappingURL=style.css.map */
