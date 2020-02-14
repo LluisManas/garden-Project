@@ -9,11 +9,11 @@ passport.use(
     {
       clientID: process.env.client_id,
       clientSecret: process.env.client_secret,
-      callbackURL: "http://localhost:3005/auth/facebook/callback",
+      callbackURL: "https://ourgarden.herokuapp.com/auth/facebook/callback",
       profileFields: ["id", "displayName", "picture.type(large)"]
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log(profile);
+      console.log("profile picture", profile.picture, profile);
       User.findOne({ facebookID: profile.id })
         .then(user => {
           if (user) {
@@ -21,7 +21,11 @@ passport.use(
             return;
           }
 
-          User.create({ facebookID: profile.id })
+          User.create({
+            facebookID: profile.id,
+            displayName: profile.displayNames,
+            imageUrl: profile.photos[0].value
+          })
             .then(newUser => {
               done(null, newUser);
             })

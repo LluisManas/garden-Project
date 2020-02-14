@@ -12,8 +12,10 @@ const checkIfLoggedIn = (req, res, next) => {
 
 router.get("/mainpage", checkIfLoggedIn, (req, res, next) => {
   //res.send(process.env.APIkey);
+  console.log("hello");
+  console.log(req.user);
   res.render("mainpage", {
-    username: req.user.username,
+    username: req.user.username || req.user.displayName,
     apiKey: process.env.APIkey,
     user: req.user,
     image: req.user.imageUrl
