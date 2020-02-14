@@ -23,7 +23,7 @@ passport.use(
 
           User.create({
             facebookID: profile.id,
-            displayName: profile.displayNames,
+            displayName: profile.displayName,
             imageUrl: profile.photos[0].value
           })
             .then(newUser => {
