@@ -6,6 +6,11 @@ body {
 h1 {
   margin: 0; }
 
+#profile-picture {
+  width: 100px;
+  height: 100px;
+  margin: 25px; }
+
 a {
   color: #00b7ff; }
 
@@ -92,6 +97,9 @@ footer {
   flex-direction: column;
   justify-content: center;
   align-items: center; }
+
+#profileInfo {
+  display: flex; }
 
 #weather-widget {
   display: flex;

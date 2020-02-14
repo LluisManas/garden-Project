@@ -1,9 +1,11 @@
 <div class="mainpage-container">
-  <h1>Welcome {{username}}</h1>
+  <div id="profileInfo">
+    <h1>Welcome {{username}}</h1>
+    {{#if image}}
+    <img src="{{image}}" id="profile-picture" alt="Profile picture">
+    {{/if}}
+  </div>
 
-  {{#if image}}
-  <img src="{{image}}" alt="Profile picture">
-  {{/if}}
   <div id="weather-widget"></div>
   <div class="main-buttons">
 
