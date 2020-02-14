@@ -51,6 +51,7 @@ const userSchema = new Schema(
     },
     phoneNumber: Number,
     facebookID: String,
+    displayName: String,
     activityGroup: {
       type: String,
       enum: [
